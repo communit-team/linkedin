@@ -31,11 +31,11 @@ module LinkedIn
       end
 
       def access_token
-        @access_token ||= ::OAuth2::AccessToken.new(consumer, @auth_token) # @auth_secret
+        @access_token ||= ::OAuth2::AccessToken.new(consumer, @auth_token, :expires_at => @expires_at)
       end
 
-      def authorize_from_access(atoken, asecret)
-        @auth_token, @auth_secret = atoken, asecret
+      def authorize_from_access(atoken, expires_at)
+        @auth_token, @expires_at = atoken, expires_at
       end
 
       private
