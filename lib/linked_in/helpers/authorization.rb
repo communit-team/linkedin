@@ -4,15 +4,15 @@ module LinkedIn
     module Authorization
 
       DEFAULT_OAUTH_OPTIONS = {
-        :request_token_path => "/uas/oauth/requestToken",
-        :access_token_path  => "/uas/oauth/accessToken",
-        :authorize_path     => "/uas/oauth/authorize",
+        #:request_token_path => "/uas/oauth/requestToken",
+        :access_token_path  => "/oauth/v2/accessToken", #"/uas/oauth/accessToken",
+        :authorize_path     => "/oauth/v2/authorize",
         :api_host           => "https://api.linkedin.com",
         :auth_host          => "https://www.linkedin.com"
       }
 
       def consumer
-        @consumer ||= ::OAuth::Consumer.new(@consumer_token, @consumer_secret, parse_oauth_options)
+        @consumer ||= ::OAuth2::Client.new(@consumer_token, @consumer_secret, parse_oauth_options)
       end
 
       # Note: If using oauth with a web app, be sure to provide :oauth_callback.
@@ -31,7 +31,7 @@ module LinkedIn
       end
 
       def access_token
-        @access_token ||= ::OAuth::AccessToken.new(consumer, @auth_token, @auth_secret)
+        @access_token ||= ::OAuth2::AccessToken.new(consumer, @auth_token) # @auth_secret
       end
 
       def authorize_from_access(atoken, asecret)
@@ -45,11 +45,11 @@ module LinkedIn
         # of the url creation ourselves.
         def parse_oauth_options
           {
-            :request_token_url => full_oauth_url_for(:request_token, :api_host),
-            :access_token_url  => full_oauth_url_for(:access_token,  :api_host),
-            :authorize_url     => full_oauth_url_for(:authorize,     :auth_host),
-            :site              => @consumer_options[:site] || @consumer_options[:api_host] || DEFAULT_OAUTH_OPTIONS[:api_host],
-            :proxy             => @consumer_options.fetch(:proxy, nil)
+              #:request_token_url => full_oauth_url_for(:request_token, :api_host),
+              :access_token_url  => full_oauth_url_for(:access_token,  :api_host),
+              :authorize_url     => full_oauth_url_for(:authorize,     :auth_host),
+              :site              => @consumer_options[:site] || @consumer_options[:api_host] || DEFAULT_OAUTH_OPTIONS[:api_host],
+              :proxy             => @consumer_options.fetch(:proxy, nil)
           }
         end
 
