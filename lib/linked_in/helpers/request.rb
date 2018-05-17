@@ -18,13 +18,13 @@ module LinkedIn
         end
 
         def post(path, body='', options={})
-          response = access_token.post("#{API_PATH}#{path}", body, {:headers => DEFAULT_HEADERS.merge(options)})
+          response = access_token.post("#{API_PATH}#{path}", {:body => body, :headers => DEFAULT_HEADERS.merge(options)})
           raise_errors(response)
           response
         end
 
         def put(path, body, options={})
-          response = access_token.put("#{API_PATH}#{path}", body, {:headers => DEFAULT_HEADERS.merge(options)})
+          response = access_token.put("#{API_PATH}#{path}", {:body => body, :headers => DEFAULT_HEADERS.merge(options)})
           raise_errors(response)
           response
         end
