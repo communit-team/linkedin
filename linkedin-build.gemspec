@@ -19,7 +19,7 @@ Gem::Specification.new do |gem|
   gem.email = ['meteor.kirk@gmail.com', 'wynn.netherland@gmail.com', 'josh.kalderimis@gmail.com']
   gem.files = `git ls-files`.split("\n")
   gem.homepage = 'http://github.com/hexgnu/linkedin'
-  gem.name = 'linkedin'
+  gem.name = 'linkedin-build'
   gem.licenses = %w[MIT]
   gem.require_paths = ['lib']
   gem.summary = 'This gem interfaces with the Linkedin XML and JSON APis'
