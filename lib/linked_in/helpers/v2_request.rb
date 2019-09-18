@@ -16,7 +16,7 @@ module LinkedIn
       def v2_get(path, options = {})
         response = access_token.get("#{API_PATH}#{path}",
                                     headers: DEFAULT_HEADERS.merge(options))
-        raise_errors(response)
+        # raise_errors(response)
         response.body
       end
 
@@ -26,7 +26,7 @@ module LinkedIn
         # response.response is Faraday::Response
         # sending back response.response makes it easier to access the env
         response = access_token.post("#{API_PATH}#{path}", options).response
-        raise_errors(response)
+        # raise_errors(response)
         response
       end
 
