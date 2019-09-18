@@ -14,8 +14,13 @@ module LinkedIn
       protected
 
       def v2_get(path, options = {})
+        puts path
+        puts options
         response = access_token.get("#{API_PATH}#{path}",
                                     headers: DEFAULT_HEADERS.merge(options))
+
+        puts response
+
         raise_errors(response)
         response.body
       end
