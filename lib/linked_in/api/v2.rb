@@ -58,7 +58,35 @@ module LinkedIn
         v2_post(path, MultiJson.dump(share_payload(urn, share)))
       end
 
+
+
+
+
+      def v2_company(options = {})
+        path = organizations_path(options)
+        v2_get(path)
+      end
+
+
       private
+
+      def organizations_path(options)
+        path = "/organizations"
+
+        if domain = options.delete(:domain)
+          path += "?q=emailDomain&emailDomain=#{CGI.escape(domain)}"
+        elsif id = options.delete(:id)
+          path += "/#{id}"
+        elsif url = options.delete(:url)
+          path += "/q=website&website=#{CGI.escape(url)}"
+        elsif name = options.delete(:name)
+          path += "/q=name&name=#{CGI.escape(name)}"
+        elsif is_admin = options.delete(:is_admin)
+          # path += "?is-company-admin=#{CGI.escape(is_admin)}"
+        else
+          path += "/~"
+        end
+      end
 
       def share_payload(urn, share)
         payload = { author: "urn:li:person:#{urn}",
