@@ -13,6 +13,8 @@ module LinkedIn
     include Api::ShareAndSocialStream
     include Api::Communications
     include Search
+    include Helpers::V2Request
+    include Api::V2
 
     attr_reader :consumer_token, :consumer_secret, :consumer_options
 

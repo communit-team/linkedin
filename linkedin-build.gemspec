@@ -6,14 +6,15 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'multi_json', '~> 1.0'
   gem.add_dependency 'oauth', '0.5.1' # '~> 0.4'
   gem.add_dependency 'oauth2', '1.4.0'
+  gem.add_dependency 'rack', '1.6.0'
   # gem.add_development_dependency 'json', '~> 1.6'
   gem.add_development_dependency 'rake', '~> 10'
   gem.add_development_dependency 'yard'
-  gem.add_development_dependency 'kramdown'
+  # gem.add_development_dependency 'kramdown'
   gem.add_development_dependency 'rspec', '~> 2.13'
-  gem.add_development_dependency 'simplecov', '~> 0.7'
+  # gem.add_development_dependency 'simplecov', '~> 0.7'
   gem.add_development_dependency 'vcr', '~> 2.5'
-  gem.add_development_dependency 'webmock', '~> 1.11'
+  # gem.add_development_dependency 'webmock', '~> 1.11'
   gem.authors = ['Matthew Kirk', 'Wynn Netherland', 'Josh Kalderimis']
   gem.description = 'Ruby wrapper for the LinkedIn API'
   gem.email = ['meteor.kirk@gmail.com', 'wynn.netherland@gmail.com', 'josh.kalderimis@gmail.com']
