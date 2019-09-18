@@ -15,7 +15,7 @@ module LinkedIn
       #
       # @return [void]
       def v2_profile
-        fields = ['id', 'firstName', 'lastName', 'profilePicture(displayImage~:playableStreams)'] # Default fields
+        fields = ['id', 'firstName', 'lastName', 'profilePicture(displayImage~:playableStreams)', 'localizedHeadline'] # Default fields
         path = "/me?projection=(#{fields.join(',')})"
         parse_profile_data v2_get(path)
       end
@@ -134,8 +134,11 @@ module LinkedIn
         data = {
             'id' => parsed_json['id'],
             'first_name' => parse_profile_localized_field(parsed_json, 'firstName'),
-            'last_name' => parse_profile_localized_field(parsed_json, 'lastName')
+            'last_name' => parse_profile_localized_field(parsed_json, 'lastName'),
+            'headline' => parsed_json['localizedHeadline'],
         }
+
+        data['formatted_name'] = "#{data['first_name']} #{data['last_name']}"
 
         if !parsed_json['profilePicture'].nil? &&
             !parsed_json['profilePicture']['displayImage~'].nil? &&
