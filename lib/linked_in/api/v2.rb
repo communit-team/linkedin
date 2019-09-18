@@ -81,11 +81,13 @@ module LinkedIn
           path += "/q=website&website=#{CGI.escape(url)}"
         elsif name = options.delete(:name)
           path += "/q=name&name=#{CGI.escape(name)}"
-        # elsif is_admin = options.delete(:is_admin)
-          # path += "?is-company-admin=#{CGI.escape(is_admin)}"
+        elsif is_admin = options.delete(:is_admin)
+          return "/organizationalEntityAcls?q=roleAssignee&role=ADMINISTRATOR&state=APPROVED"
         else
           path += "/"
         end
+
+        return path
       end
 
       def share_payload(urn, share)
